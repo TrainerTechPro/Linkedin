@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Readiness | Kinesiology Professional Development</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --paper: #faf9f7;
+            --muted: #6b6b6b;
+            --accent: #d64000;
+            --accent-soft: #fff0e6;
+            --surface: #ffffff;
+            --border: #e5e5e5;
+            --linkedin: #0a66c2;
+            --success: #0d7c5c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Instrument Sans', -apple-system, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 0 20px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+        }
+
+        .logo-mark {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .course-tag {
+            font-family: 'Newsreader', Georgia, serif;
+            font-style: italic;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            border-bottom: 1px solid var(--border);
+            animation: fadeUp 0.8s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: clamp(42px, 7vw, 72px);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            max-width: 800px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-intro {
+            margin-top: 32px;
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* Section styling */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+            animation: fadeUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 24px;
+            align-items: baseline;
+            margin-bottom: 40px;
+        }
+
+        .section-number {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 14px;
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink);
+        }
+
+        /* Resource Cards */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .resource-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #ff8a5c);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .resource-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.65;
+            margin-bottom: 24px;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .card-meta svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Instrument Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-linkedin {
+            background: var(--linkedin);
+            color: white;
+        }
+
+        .btn-linkedin:hover {
+            background: #084a91;
+            transform: translateX(4px);
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Certification Section */
+        .cert-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .cert-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cert-intro h3 {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        .cert-intro h3 strong {
+            font-weight: 600;
+        }
+
+        .cert-intro p {
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .cert-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            position: relative;
+        }
+
+        .step-indicator {
+            position: absolute;
+            top: -12px;
+            left: 28px;
+            width: 24px;
+            height: 24px;
+            background: var(--success);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .checklist li::before {
+            content: '✓';
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            background: #e8f5f0;
+            color: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 1px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .skill-tag {
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 14px;
+            background: #f0f7ff;
+            color: var(--linkedin);
+            border-radius: 6px;
+        }
+
+        /* Pro Tip */
+        .pro-tip {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pro-tip::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(214, 64, 0, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .pro-tip-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .pro-tip h4 {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .pro-tip p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .example-post {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .example-post p {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.85);
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-text span {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background: var(--border);
+            border-radius: 50%;
+            vertical-align: middle;
+            margin: 0 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-mark">Kinesiology</div>
+                <div class="course-tag">Professional Development Series</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-label">Career Resources</div>
+                <h1>Build Your <em>Digital Presence</em> & Stand Out</h1>
+                <p class="hero-intro">A curated guide to optimizing your LinkedIn profile and earning credentials that set you apart in the competitive health & fitness job market.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">Optimize Your LinkedIn</h2>
+                </div>
+
+                <p style="color: var(--muted); margin-bottom: 32px; max-width: 600px;">Choose the resource that matches your current profile status. Both paths lead to a recruiter-ready presence.</p>
+
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <span class="card-badge">Quick Fix</span>
+                        <h3 class="card-title">5 Must-Know Profile Tips</h3>
+                        <p class="card-description">Best for existing profiles. Learn keyword optimization, headline hacks, and free tools to polish your headshot—all in under 10 minutes.</p>
+                        <div class="card-meta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                            <span>8 min watch • Jeff Su</span>
+                        </div>
+                        <a href="https://youtu.be/B4OhuzwLc9o?si=tYmJow3uBM4WDy0O" target="_blank" class="btn btn-linkedin">
+                            Watch Video
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+                        </a>
+                    </div>
+
+                    <div class="resource-card">
+                        <span class="card-badge">Complete Build</span>
+                        <h3 class="card-title">Profile Setup Walkthrough</h3>
+                        <p class="card-description">Starting from scratch? This step-by-step guide covers every section—from writing your "About" to requesting recommendations.</p>
+                        <div class="card-meta">
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+                            <span>17 min watch • Kevin Stratvert</span>
+                        </div>
+                        <a href="https://youtu.be/hNzpEeU3a4I?si=A3Bb29CJcs1H7L5f" target="_blank" class="btn btn-linkedin">
+                            Watch Video
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Google AI Essentials Certification</h2>
+                </div>
+
+                <div class="cert-layout">
+                    <div class="cert-intro">
+                        <h3>Differentiate yourself with <strong>AI literacy</strong></h3>
+                        <p>Complete the Google AI Essentials course on Coursera to demonstrate forward-thinking digital skills that set you apart from other Kinesiology graduates.</p>
+                    </div>
+
+                    <div class="cert-steps">
+                        <div class="step-card">
+                            <span class="step-indicator">1</span>
+                            <h4 class="step-title">Add to Licenses & Certifications</h4>
+                            <ul class="checklist">
+                                <li><strong>Name:</strong> Google AI Essentials</li>
+                                <li><strong>Issuing Organization:</strong> Google</li>
+                                <li><strong>Credential URL:</strong> Your unique certificate link</li>
+                            </ul>
+                        </div>
+
+                        <div class="step-card">
+                            <span class="step-indicator">2</span>
+                            <h4 class="step-title">Add These Skills Manually</h4>
+                            <p style="font-size: 14px; color: var(--muted); margin-bottom: 16px;">Go to the Skills section and add these keywords so recruiters can find you:</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Artificial Intelligence (AI)</span>
+                                <span class="skill-tag">Prompt Engineering</span>
+                                <span class="skill-tag">Workflow Automation</span>
+                                <span class="skill-tag">Productivity Tools</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pro-tip">
+                    <div class="pro-tip-label">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                        Professor's Tip
+                    </div>
+                    <h4>Connect your certificate to your field</h4>
+                    <p>When you share your certificate, write a caption that bridges AI and Kinesiology. This signals strategic thinking to recruiters.</p>
+                    <div class="example-post">
+                        <p>"Excited to complete the Google AI Essentials certification! Looking forward to applying these tools to streamline workflows in [Physical Therapy / Corporate Wellness / Sports Performance]."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">Kinesiology Internship Program <span></span> Professional Development Series</p>
+        </div>
+    </footer>
+
+</body>
+</html>
